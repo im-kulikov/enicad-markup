@@ -1,0 +1,8 @@
+mixin form(data)
+    +b('form').form(action="javascript:void(0);" class="-#{data.name} #{data.static ? '-static' : '' }")
+        if block
+            block
+
+
+        //
+

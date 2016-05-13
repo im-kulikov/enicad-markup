@@ -1,0 +1,3 @@
+mixin check_form(data)
+    +b('label').check_form(for=data.for)
+        +e('span').__label(class="-#{data.for}") #{data.label}

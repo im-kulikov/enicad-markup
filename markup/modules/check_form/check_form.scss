@@ -1,0 +1,20 @@
+.check_form
+{
+    cursor: pointer;
+    display: inline-block;
+
+    &__label
+    {
+        color: $dark-green;
+        line-height: 1rem;
+        text-align: right;
+        display: inline-block;
+        font-weight: 400;
+
+        &-forgot
+        {
+            max-width: 3.5rem;
+            vertical-align: middle;
+        }
+    }
+}

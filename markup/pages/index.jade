@@ -1,0 +1,107 @@
+doctype html
+html(class="no-js", lang="ru")
+
+    include ../../node_modules/bemto.jade/bemto
+
+    - set_bemto_settings({ prefix: '', element: '__', modifier: '-' })
+
+    include ../modules/head/head
+    include ../modules/example/example
+    include ../modules/check_form/check_form
+    include ../modules/form/form
+    include ../modules/radio/radio
+
+    head
+        +head(head.defaults)
+    body.page
+        |%=symbols=%
+
+        section.page__wrapper
+
+            // Я конечно мог бы придумать какой-то иной вариант переключения, но к сожалению из-за того, что работы
+                много у меня почти не было времени на иное решение.
+
+            // Что касается установить форму посередине экрана, решение обусловлено тем, что можно использовать
+                вариант когда устанавливается position: absolute, margin: auto, а top|left|right|bottom в 0,
+                таким образом можно так же установить элемент в центр, но в таком случае необходимо использовать
+                высоту, что не кошерно
+
+            // Так же установка формы по центру экрана выполняется добавлением модификатора &-static
+
+            // Для того чтобы установить определённой форме видимость - добавляем его radio-инпуту checked.
+
+            // Да, скорее всего вы считаете меня лентяем, так как я использовал самые простые варианты, но надеюсь
+                на вашу благосклонность ;D
+
+
+            // А теперь, немного по стеку технологий: в проекте используется tars от команды 2gis, scss как препроцессор
+                + autoprefixer для совместимости с другими браузерами, jade как препроцессор HTML.
+                Так как задача стояла в том, чтобы реализовать вёрстку без JS, его не подключал. Из фреймворков использую
+                foundation, так как он позволяет mobile-first. Но в текущем варианте, я его использовал не более чем на 1%.
+
+            // Форма входа:
+            +radio({ "name": 'login', "default": true })
+            +form({ "name": "login", "static": true })
+                +e.title
+                    | Вход
+                    +e.right_bar
+                        +check_form({ "for": "register", "label": "Регистрация" })
+
+                +e.body
+                    +e('label').input_label
+                        +e('input').input(type="email" name="email" placeholder="Электронная почта")
+
+                    +e('label').input_label
+                        +e('input').input(type="password" name="password" placeholder="Пароль")
+
+                    +e('div').input_label.-actions
+                        +e('button').button.button(type="submit" name="submit") Войти
+                        +e.right_bar
+                            +check_form({ "for": "forgot", "label": "Забыли пароль?" })
+
+            // Форма регистрации:
+            +radio({"name": 'register' })
+            +form({"name": "register", "static": true })
+                +e.title
+                    | Регистрация
+                    +e.right_bar
+                        +check_form({"for": "login", "label": "Вход"})
+
+                +e.body
+                    +e('label').input_label
+                        +e('input').input(type="email" name="email" placeholder="Электронная почта")
+
+                    +e('label').input_label
+                        +e('input').input(type="password" name="password" placeholder="Придумайте пароль")
+
+                    +e('label').input_label
+                        +e('input').input(type="password" name="password_retype" placeholder="Повторите пароль")
+
+                    +e('div').input_label.-actions
+                        +e('button').button.button(type="submit" name="submit") Регистрация
+
+            // Форма восстановления пароля:
+            +radio({"name": 'forgot'})
+            +form({"name": "forgot", "static": true})
+                +e.title
+                    | Пароль потерялся
+                    +e.right_bar
+                        +check_form({"for": "login", "label": "Вход"})
+
+                +e.body
+                    +e('div').input_label.-text
+                        | Мы вышлем письмо для смены пароля вам на электронную почту, указанную при регистрации:
+
+                    +e('label').input_label
+                        +e('input').input(type="email" name="email" placeholder="Электронная почта")
+
+                    +e('div').input_label.-actions
+                        +e('button').button.button(type="submit" name="submit") Отправить
+
+            .page__buffer
+
+        script(src='%=static=%js/separate-js/svg4everybody.min.js')
+        script svg4everybody();
+
+        //- Main scripts. You can replace it, but I recommend you to leave it here
+        script(src='%=static=%js/main%=hash=%%=min=%.js')

@@ -1,0 +1,30 @@
+// GUI stylies of the project
+// For example, styles of the links, buttons and so on.
+
+// foundation settings
+@import "_settings.scss";
+// foundation styles
+@include foundation-everything($flex: true);
+
+@media(max-width: 980px) {
+    html {
+        font-size: $global-font-size - 10%;
+    }
+
+    .page__wrapper {
+        margin-bottom: 0;
+    }
+}
+
+@media(max-width: 400px) {
+    html
+    {
+        font-size: $global-font-size - 20%;
+        min-height: 100%;
+        height: auto;
+    }
+
+    .page__wrapper {
+        margin-bottom: 0 !important;
+    }
+}

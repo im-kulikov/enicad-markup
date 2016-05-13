@@ -1,0 +1,12 @@
+.radio
+{
+    display: none;
+    visibility: hidden;
+
+    &:checked + .form
+    {
+        opacity: 1;
+        z-index: inherit;
+        visibility: visible;
+    }
+}

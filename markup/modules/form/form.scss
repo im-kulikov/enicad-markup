@@ -1,0 +1,95 @@
+.form
+{
+    width: 385px;
+    border: solid 1px $light-gray;
+    border-radius: 0.1rem;
+
+    opacity: 9;
+    z-index: -10;
+    visibility: hidden;
+
+    background-color: $white;
+
+    &-static
+    {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%,-50%);
+    }
+
+    &__title
+    {
+        height: 3rem;
+        line-height: 3rem;
+
+        padding: 0 20px;
+
+        border-bottom: solid 1px $light-gray;
+
+        font-size: 1.2rem;
+        font-weight: 400;
+    }
+
+    &__right_bar
+    {
+        float: right;
+        height: 100%;
+    }
+
+    &__body
+    {
+        padding: 20px;
+    }
+
+    &__input_label
+    {
+        &-actions
+        {
+            height: 2.5rem;
+            line-height: 2.5rem;
+        }
+
+        &:not(:last-child)
+        {
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__input
+    {
+        margin-bottom: 0;
+        border: 1px solid $light-gray;
+        border-radius: 0.15rem;
+
+        &:active,
+        &:focus
+        {
+            border-color: darken($light-gray, 15%);
+        }
+
+        @include placeholder
+        {
+            font-weight: 400;
+            color: $medium-gray;
+            font-size: 0.8rem;
+        }
+    }
+
+    &__button
+    {
+        height: 2.3125rem;
+        min-width: 8rem;
+
+        border-radius: 0.2rem;
+        padding: 0.5rem 1rem;
+
+        font-weight: 400;
+    }
+}
+
+@media(max-width: 980px) {
+    .form
+    {
+        width: 300px;
+    }
+}
